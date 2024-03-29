@@ -1,0 +1,66 @@
+﻿@using MyClass.DAO
+@using MyClass.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+
+    string key = Request.QueryString["key"];
+    List<Product> result = new List<Product>();
+}
+
+<h2>Tìm kiếm: @key</h2>
+@{
+    if (string.IsNullOrEmpty(key))
+    {
+        <h3 style="font-weight: bold; font-size:15px">Vui lòng nhập từ khóa</h3>
+    }
+    else
+    {
+        if (key == "" || key.Length < 3)
+        {
+            <h3 style="font-weight: bold; font-size:15px">Vui lòng nhập từ khóa</h3>
+        }
+        else
+        {
+            result = new ProductDAO().SearchByKey(key);
+            foreach (var item in result)
+            {
+                <div class="col-md-3">
+                    <div class="item product-item">
+                        <div class="card" style="width:100%">
+                            <a href="~/@item.Slug">
+                                <img src="~/Public/images/products/@item.Img" class="img-fluid card-img-top" alt="...">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title text-center">
+
+                                    <a href="~/@item.Slug">@item.Name</a>
+
+                                </h5>
+                                <h5 class="text-center">
+                                    <strong class="text-success ">@string.Format("{0:0,0}", item.PriceSell)<sup>đ</sup></strong>
+                                    <del> <span class="text-danger">@string.Format("{0:0,0}", item.PriceBuy)</span></del><sup>đ</sup>
+                                </h5>
+                                <div class="btn-group w-100" role="group" aria-label="Bacsic example">
+                                    <a href="#" class="btn btn-outline-info">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </a>
+                                    <a href="~/@item.Slug" class="btn btn-outline-success">
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--end col-md-4-->
+            }
+
+
+
+        }
+
+    }
+
+}

@@ -1,0 +1,22 @@
+﻿@model MyClass.Models.Post
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<div class="container">
+    <section class="section-main padding-y">
+        <main class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="row no-gutters items-wrap">
+                        <div class="col-md-3">
+                            <h1 class="title-post">@Model.Title</h1>
+                            <p>@Html.Raw(@Model.Detail)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+</div>

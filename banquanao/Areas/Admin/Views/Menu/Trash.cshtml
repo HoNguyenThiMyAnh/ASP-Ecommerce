@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MyClass.Models.Menu>
+
+@{
+    ViewBag.Title = "Thùng Rác Danh Mục";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content my-2">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6">
+                        <strong class="text-danger text-uppercase">Thùng Rác Danh Mục Sản Phẩm</strong>
+                    </div>
+                    <div class="col-6 text-right">
+                        <a href="@Url.Action("Index","Category")" class="btn btn-sm btn-info"><i class="fa fa-arrow-left" aria-hidden="true"></i>Về Danh Sách </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                @Html.Partial("Message")
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width:20px;">#</th>
+                            <th>Tên danh mục</th>
+                            <th> Slug</th>
+                            <th>Ngày tạo</th>
+                            <th class="text-center" style="width:120px;">Chức năng</th>
+                            <th class="text-center" style="width:20px;">ID</th>
+                        </tr>
+                    </thead>
+           
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><input type="checkbox" name="checkId" value="" /></td>
+                                <th class="text-center" style="width:20px;">ID</th>
+                                <td>@item.Name</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Created_At)
+                                </td>
+                                <td class="text-center">
+                                    <a href="@Url.Action("Retrash","Category", new { id = item.Id })" class="btn btn-sm btn-info"><i class="fas fa-undo-alt"></i></a>
+                                    <a href="@Url.Action("Delete","Category", new { id = item.Id })" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                </td>
+                                <td>
+                                    @item.Id
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+

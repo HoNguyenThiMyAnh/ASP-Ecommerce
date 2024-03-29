@@ -1,0 +1,196 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Ho Nguyen Thi My Anh</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="~/Public/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Public/css/slider.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="~/Public/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="~/Public/js/move-top.js"></script>
+    <script type="text/javascript" src="~/Public/js/easing.js"></script>
+    <script type="text/javascript" src="~/Public/js/startstop-slider.js"></script>
+    <link href="~/Public/css/all.min.css" rel="stylesheet" />
+    <link href="~/Public/css/bootstrap.min.css" rel="stylesheet" />
+    @RenderSection("header", required: false)
+</head>
+<body>
+    <header>
+        <section class="topar clearfix bd-green-500">
+       
+                <div class="row bg-black p-2">
+                    <div class="col-md-6 text-white">
+                        Chào mừng bạn đến với cửa hàng thời trang ZUNEX.ZX
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <ul class="nav justify-content-end py-0">
+
+                            @if (Session["UserCustomer"].Equals(""))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link py-0 text-white" href="~/dang-ky"><i class="fas fa-user"></i>Đăng ký</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link py-0 text-white" href="~/dang-nhap"><i class="fas fa-user"></i>Đăng nhập</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link py-0 text-white" href="~/dang-xuat"><i class="fas fa-user"></i>Đăng xuất</a>
+                                </li>
+
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+         
+        </section>
+    </header>
+    <section class="clearfix header">
+        <div class="container">
+            <div class="row my-4">
+                <div class="col-3">
+                    <img src="~/Public/logo.png" style="width:150px;" class="img-fluid" alt="Logo">
+                </div>
+                <div class="col-6">
+                    <form method="get" action="~/tim-kiem">
+                            <input type="text" name="key" class="form-control" placeholder="Tìm kiếm sản phẩm...">
+                            <button type="submit" class="btn btn-primary mt-2">Tìm kiếm</button>
+                        </form>
+                </div>
+                <div class="col-3">
+                    @{
+                        int soluong = 0;
+                        if (!System.Web.HttpContext.Current.Session["MyCart"].Equals(""))
+                        {
+                            List<CartItem> listcart = (List<CartItem>)System.Web.HttpContext.Current.Session["MyCart"];
+                            soluong = listcart.Count();
+                        }
+                    }
+                    <a href="~/Giohang/Index" class="btn btn-success position-relative">
+                        <i class="fas fa-shopping-bag"></i>Giỏ Hàng
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            @soluong
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            </div>
+                </section>
+              
+        <section class="clearfix header">
+            <div id="fb-root"></div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v10.0&appId=283850155734260&autoLogAppEvents=1" nonce="DDgm03hE"></script>
+        </section>
+
+
+
+        @Html.Action("MainMenu", "Module")
+
+
+        @RenderBody()
+
+        @RenderSection("footer", required: false)
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 py-3">
+                        <img class="img-fluid" src="~/Public/logo.png">
+                        <h4 class="title-menu">
+                            <span>
+                                HỆ THỐNG CỬA HÀNG
+                            </span>
+                        </h4>
+                        <ul class="list-unstyled info wow fadeInUp animated">
+                            <li>
+                                <i class="fa fa-map-marker"></i> Hà Nội: 61 Đông Các, Đống Đa
+                                <br><i class="fa fa-map-marker"></i> Đà Nẵng: 292 Lê Duẩn, Thanh Khê
+                                <br><i class="fa fa-map-marker"></i> HCM: 411 Võ Văn Tần, P5, Q3
+                            </li>
+                            <li><a href="tel:0935 702 014" title="0935 702 014"><i class="fa fa-phone"></i> 0935 702 014</a></li>
+                            <li><a href="mailto:info@zunezx.com" title="info@zunezx.com"><i class="fa fa-envelope"></i> info@zunezx.com</a></li>
+                        </ul>
+                       
+                    </div>
+                    <div class="col-md-3 py-3">
+                        @*@Html.Action("MenuFooter","Module")*@
+                        <h4 class="title-menu">
+                            <span>
+                                VỀ CHÚNG TÔI <i class="fa fa-plus hidden" aria-hidden="true"></i>
+                            </span>
+                        </h4>
+                        <ul class="list-menu">
+
+                            <li class="li_menu"><a href="/" title="Trang chủ">Trang chủ</a></li>
+
+                            <li class="li_menu"><a href="/collections/all" title="Sản phẩm">Giới thiệu</a></li>
+
+                            <li class="li_menu"><a href="/tin-tuc" title="Tin tức">Tin tức</a></li>
+
+                            <li class="li_menu"><a href="/lien-he" title="Liên hệ ">Liên Hệ </a></li>
+
+
+                        </ul>
+                    </div>
+                    <div class="col-md-3 py-3">
+                        <h4 class="title-menu">
+                            <span>
+                                VỀ CHÚNG TÔI <i class="fa fa-plus hidden" aria-hidden="true"></i>
+                            </span>
+                        </h4>
+                        <ul class="list-menu">
+
+                            <li class="li_menu"><a href="/" title="Trang chủ">Trang chủ</a></li>
+
+                            <li class="li_menu"><a href="/collections/all" title="Sản phẩm">Giới thiệu</a></li>
+
+                            <li class="li_menu"><a href="/tin-tuc" title="Tin tức">Tin tức</a></li>
+
+                            <li class="li_menu"><a href="/lien-he" title="Liên hệ ">Liên Hệ </a></li>
+
+
+                        </ul>
+                    </div>
+                    <div class="col-md-3 py-3">
+                        <div class="social">
+                            <h4 class="title-menu">
+                                <span>
+                                    MẠNG XÃ HỘI
+                                </span>
+                            </h4>
+
+                            <a href="https://www.facebook.com/zunezxvn/" title="Facebook" target="_blank" class="fb"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/zune.zx/" title="Instagram" target="_blank" class="ist">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://shopee.vn/zunezx" title="Shopee" target="_blank" class="shopee"><i class="fa-solid fa-cart-shopping"></i></a>
+                            <a href="https://vt.tiktok.com/LpbKW4/" title="Tiktok" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i></a>
+
+                            <a href="https://www.youtube.com/channel/UCklZKNakn7dv4Q8uc4SwpQw?view_as=subscriber" title="Youtube" target="_blank" class="yt"><i class="fab fa-youtube"></i></a>
+
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+        <div class="copyright d-flex">
+            <div class="container">
+                <div class="inner">
+                    <div class="row tablet">
+                        <div id="copyright" class="col-lg-6 col-md-6 col-12">
+                            <div class="copyright">© Copyright 2023 <a target="_blank" href="https://vsscorp.vn/"> VSS Corporation</a>. All right reserved</div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#" class="backtop d-none show" title="Lên đầu trang"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+
+            </div>
+        </div>
+        <link id="myCss" rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" media="all">
+        <script src="~/Public/js/all.min.js"></script>
+</body>
+</html>

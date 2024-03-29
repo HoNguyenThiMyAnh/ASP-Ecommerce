@@ -1,0 +1,82 @@
+﻿@model IEnumerable<MyClass.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section head {
+
+    <link href="~/Public/css/cdn.datatables.net_1.13.5_css_jquery.dataTables.min.css" rel="stylesheet" />
+
+}
+@section footer {
+    <script src="~/Public/js/cdn.datatables.net_1.13.5_js_jquery.dataTables.min.js"></script>
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
+}
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content my-2">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6">
+                        <strong class="text-danger text-uppercase">DANH SÁCH ORDER</strong>
+                    </div>
+                    <div class="col-6 text-right">
+                        
+                        <a href="@Url.Action("Trash","Order")" class="btn btn-sm btn-danger">
+                            <i class="fa fa-trash"></i>Thùng rác
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                @Html.Partial("Message")
+                <table class="table table-bordered table-striped" id="myTable">
+                    <thead>
+                        <tr>
+                            <th style="width:20px;" class="text-center">
+                                <input type="checkbox" value="" />
+                            </th>
+                            <th style="width:60px;" class="text-center">Hình</th>
+                            <th>Tên Order</th>
+                        </tr>
+                        @Html.DisplayNameFor(model=>model.Id)
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><input type="checkbox" name="checkId" value="" /></td>
+                                <td> @Html.Action("NameCustomer", "User", new { userid = item.UserId })</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreatAt)
+                                </td>
+                                <td>
+                                <td class="text-center">
+                                    <a href="@Url.Action("Details","Order", new { id = item.Id })" class="btn btn-sm btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    <a href="@Url.Action("Edit","Order", new { id = item.Id })" class="btn btn-sm btn-info"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                    <a href="@Url.Action("DelTrash","Order", new { id = item.Id })" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem=>item.Id)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

@@ -1,0 +1,77 @@
+﻿@model MyClass.Models.Post
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="content-wrapper">
+        <!-- Main content -->
+        <section class="content my-2">
+            <!-- Default box -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-6">
+                            <strong class="text-danger text-uppercase">THÊM DANH MỤC SẢN PHẨM</strong>
+                        </div>
+                        <div class="col-6 text-right">
+                            <button type="submit" class="btn btn-success btn-sm">
+                                <i class="fa fa-save" aria-hidden="true"></i> Lưu[Thêm]
+                            </button>
+                            <a href="@Url.Action("Index", "Post")" class="btn btn-sm btn-info">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>Về Danh Sách
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class=" row">
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <label>Tên bài viết<span class="text-danger">(*)</span></label>
+                                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Chi tiết<span class="text-danger">(*)</span></label>
+                                @Html.TextAreaFor(model => model.Detail, new { @class = "form-control", @rows = "3" })
+                                @Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Từ Khóa<span class="text-danger">(*)</span></label>
+                                @Html.TextAreaFor(model => model.MetaDesc, new { @class = "form-control", @rows = "3" })
+                                @Html.ValidationMessageFor(model => model.MetaDesc, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Mô tả<span class="text-danger">(*)</span></label>
+                                @Html.TextAreaFor(model => model.MetaKey, new { @class = "form-control", @rows = "7" })
+                                @Html.ValidationMessageFor(model => model.MetaKey, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Sắp xếp</label>
+                            @Html.DropDownListFor(model => model.TopicId, (SelectList)ViewBag.ListTopic, "sắp xếp", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TopicId, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>Trạng thái</label>
+                            @Html.DropDownListFor(model => model.Status, new[] { new SelectListItem { Text = "Không Xuất bản", Value = "2" }, new SelectListItem { Text = "Xuất bản", Value = "1" } }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+}

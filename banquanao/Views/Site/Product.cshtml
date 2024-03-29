@@ -1,0 +1,66 @@
+﻿@model PagedList.IPagedList<MyClass.Models.ProductInfo>
+@{
+    ViewBag.Title = "Tất cả sản phẩm";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+@using PagedList.Mvc;
+<section class="maincontent clearfix">
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-md-3 col-lg-3">
+                <div class="slidebar">
+                    @Html.Action("ListCategory", "Module")
+                    @Html.Action("PostLastNews", "Module")
+                </div>
+            </div>
+            <div class="col-md-9 col-lg-9">
+                <div class="category-title position-relative">
+                    <h2 class="text-center text-uppercase">Tất cả sản phẩm</h2>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var product in Model)
+                {
+                    <div class="col-md-3">
+                        <div class="item product-item">
+                            <div class="card" style="width:100%">
+                                <a href="~/@product.Slug">
+                                    <img src="~/Public/images/products/@product.Img" class="img-fluid card-img-top" alt="...">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">
+
+                                        <a href="~/@product.Slug">@product.Name</a>
+
+                                    </h5>
+                                    <h5 class="text-center">
+                                        <strong class="text-success ">@string.Format("{0:0,0}", product.PriceSell)<sup>đ</sup></strong>
+                                        <del> <span class="text-danger">@string.Format("{0:0,0}", product.PriceBuy)</span></del><sup>đ</sup>
+                                    </h5>
+                                    <div class="btn-group w-100" role="group" aria-label="Bacsic example">
+                                        <a href="#" class="btn btn-outline-info">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </a>
+                                        <a href="~/@product.Slug" class="btn btn-outline-success">
+                                            <i class="far fa-eye"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--end col-md-4-->
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <nav aria-label="Page navigate example">
+        @Html.PagedListPager(Model, page => Url.Action("Product","Site", new { page }))
+            </nav>
+    </div>
+
+
+</section>
+

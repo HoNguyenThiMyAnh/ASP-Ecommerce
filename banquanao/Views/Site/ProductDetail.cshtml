@@ -1,0 +1,48 @@
+﻿@model MyClass.Models.Product
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<div class="container ">
+    <div class="row my-4">
+        <div class="col-md-6">
+            <img style="width:500px;" src="~/Public/images/products/@Model.Img" alt="San pham" />
+        </div>
+        <div class="col-md-6">
+            <h1>@Model.Name</h1>
+            <h3>@Model.PriceBuy.ToString("#,##0") đồng </h3>
+        </div>
+    </div>
+</div>
+BÌNH LUẬN
+<div class="row my-3">
+    <div class="fb-comments" data-href="https://localhost:44377/ao-thun/@Model.Slug" data-width="100%" data-numposts="5"></div>
+</div>
+<h3>SẢN PHẨM CÙNG LOẠI</h3>
+<div class="row my-4">
+    @foreach (var proother in ViewBag.ListOther)
+    {
+        <div class="col-md-3">
+                <div class="card align-content-center" >
+                    <a href="@proother.Slug">
+                        <img style="margin-left:18px;margin-top:10px; width:260px;" src="~/Public/images/products/@proother.Img" alt="@proother.Img">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="text-center font18">
+                            <a href="@proother.Slug">@proother.Name</a>
+                        </h5>
+                        <h5 class="text-center font18">
+                            <a href="~/@proother.Slug">@proother.PriceBuy</a>
+                        </h5>
+                     <h5 class="text-center font18"> 200.000đ</h5>
+                        <a href="#" class="from-control btn btn-info">Đặt mua</a>
+                    </div>
+                </div>
+            </div>
+    }
+    </div>
+
+  
+
+

@@ -1,0 +1,88 @@
+﻿@model MyClass.Models.Topic
+
+@{
+    ViewBag.Title = "Xóa danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<!<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content my-2">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-6">
+                            <strong>Xác Nhận Xóa  Danh Mục Sản Phẩm</strong>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="@Url.Action("Edit", "Topic", new { id = Model.Id })" class="btn btn-sm btn-info"><i class="fa fa-edit"></i>Cập Nhật</a>
+                            <a href="@Url.Action("Index", "Topic")" class="btn btn-sm btn-info"><i class="fa fa-arrow-left" aria-hidden="true"></i>Về Danh Sách </a>
+                            <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-trash-alt"></i>Xóa</button>
+                        </div>
+                    </div>
+                }
+                <div class="card-body my-3">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th style="width:120px">Tên trường</th>
+                            <th>Noi Dung</th>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Name)</td>
+                            <td>@Html.DisplayFor(model => model.Name)</td>
+                        </tr>
+                        <tr>
+                            <td> @Html.DisplayNameFor(model => model.Slug)</td>
+                            <td> @Html.DisplayFor(modelItem => Model.Slug)</td>
+                        </tr>
+                        <tr>
+                            <td> @Html.DisplayNameFor(model => model.ParentId)</td>
+                            <td> @Html.DisplayFor(modelItem => Model.ParentId)</td>
+                        </tr>
+                        <tr>
+                            <td> @Html.DisplayNameFor(model => model.Orders)</td>
+                            <td> @Html.DisplayFor(modelItem => Model.Orders)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.MetaDesc)</td>
+                            <td> @Html.DisplayFor(modelItem => Model.MetaDesc)</td>
+                        </tr>
+                        <tr>
+                            <td> @Html.DisplayNameFor(model => model.MetaKey)</td>
+                            <td> @Html.DisplayFor(modelItem => Model.MetaKey)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Created_By)</td>
+                            <td> @Html.DisplayFor(modelItem => Model.Created_By)</td>
+                        </tr>
+                        <tr>
+                            <td> @Html.DisplayNameFor(model => model.Created_At)</td>
+                            <td> @Html.DisplayFor(modelItem => Model.Created_At)</td>
+                        </tr>
+                        <tr>
+                            <td> @Html.DisplayNameFor(model => model.Updated_By)</td>
+                            <td> @Html.DisplayFor(modelItem => Model.Updated_By)</td>
+                        </tr>
+                        <tr>
+                            <td> @Html.DisplayNameFor(model => model.Updated_At)</td>
+                            <td> @Html.DisplayFor(modelItem => Model.Updated_At)</td>
+                        </tr>
+                        <tr>
+                            <td> @Html.DisplayNameFor(model => model.Status)</td>
+                            <td> @Html.DisplayFor(modelItem => Model.Status)</td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+            <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

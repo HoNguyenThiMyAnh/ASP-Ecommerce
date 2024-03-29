@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MyClass.Models.ProductInfo>
+@{
+    var category = ViewBag.Category;
+}
+
+@if (Model.Count()!=0)
+{
+
+<div class="category-title position-relative">
+    <h3 class="text-center text-uppercase">@category.Name</h3>
+    <a class="float-end position-absolute top-0 end-0" href="@category.Slug">Xem tất cả</a>
+</div>
+<div class="row">
+    @foreach (var product in Model)
+    {
+            <div class="col-md-3">
+                <div class="item product-item">
+                    <div class="card" style="width:100%">
+                        <a href="@product.Slug">
+                            <img style="margin-left:25px;" src="~/Public/images/products/@product.Img" alt="Images" class="fixed-size-image resize">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="@product.Slug">@product.Name</a>
+                            </h5>
+                            <h5 class="text-center">
+                                <strong class="text-success ">@string.Format("{0:0,0}", product.PriceSell)<sup>đ</sup></strong>
+                                <del> <span class="text-danger">@string.Format("{0:0,0}", product.PriceBuy)</span></del><sup>đ</sup>
+                            </h5>
+                            <div class="btn-group w-100" role="group" aria-label="Bacsic example">
+                                <a href="@Url.Action("CartAdd","Giohang", new { productid = product.Id})" class="btn btn-outline-info">
+                                    <i class="fas fa-shopping-cart">Giỏ hàng</i>
+                                </a>
+                                <a href="~/@product.Slug" class="btn btn-outline-success">
+                                    <i class="far fa-eye">Xem chi tiết</i>
+                                </a>
+                            </div>
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+
+       
+    </div>
+
+}

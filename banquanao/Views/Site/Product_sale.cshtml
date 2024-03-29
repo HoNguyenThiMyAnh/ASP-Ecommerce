@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MyClass.Models.Product>
+<section class="maincontent clearfix">
+    <div class="container my-3">
+        <div class="row">
+                <div class="category-title position-relative">
+                    <h2 class="text-center text-uppercase">Sản phẩm sale</h2>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var product in Model)
+                {
+                    <div class="col-md-3">
+                        <div class="item product-item">
+                            <div class="card" style="width:100%">
+                                <span class="text-light" style=" background-color: #ff0000; width: 50px;">SALE</span>
+
+                                <a href="~/@product.Slug">
+                                    <img src="~/Public/images/products/@product.Img" class="img-fluid card-img-top" alt="...">
+
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">
+
+                                        <a href="~/@product.Slug">@product.Name</a>
+
+                                    </h5>
+                                    <h5 class="text-center">
+                                        <strong class="text-success ">@string.Format("{0:0,0}", product.PriceSell)<sup>đ</sup></strong>
+                                        <del> <span class="text-danger">@string.Format("{0:0,0}", product.PriceBuy)</span></del><sup>đ</sup>
+                                    </h5>
+                                    <div class="btn-group w-100" role="group" aria-label="Bacsic example">
+                                        <a href="#" class="btn btn-outline-info">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </a>
+                                        <a href="~/@product.Slug" class="btn btn-outline-success">
+                                            <i class="far fa-eye"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--end col-md-4-->
+                }
+            </div>
+        </div>
+</section>

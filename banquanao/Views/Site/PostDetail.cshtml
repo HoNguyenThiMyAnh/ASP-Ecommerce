@@ -1,0 +1,29 @@
+﻿@model MyClass.Models.Post
+@{
+    ViewBag.Title = "PostDetail";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+
+<section class="maincontent clearfix">
+    <main class="container my-3">
+        <div class="row mb-5">
+            <div class="col-md-12 col-lg-12">
+                <h1 class="title-post">@Model.Title</h1>
+                <p>@Html.Raw(@Model.Detail)</p>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-12">
+                <h3>BÀI VIẾT KHÁC</h3>
+                <ul>
+                    @foreach (var post in ViewBag.ListOrther)
+                    {
+                        <li><a href="~/@post.Slug">@post.Title</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </main>
+</section>
+

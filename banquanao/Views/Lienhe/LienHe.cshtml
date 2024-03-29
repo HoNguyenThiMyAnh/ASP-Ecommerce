@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "LienHe";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<div class="container">
+    <div class="form-group">
+        <lable for="">Họ và tên </lable>
+        <asp:TextBox id="txtFullname" runat="server" CssClass="form-control" placeholder="Họ và tên" />
+    </div>
+    <div class="form-group">
+        <lable for="">Email</lable>
+        <asp:TextBox id="txtEmail" TextMode="Email" runat="server" CssClass="form-control" placeholder="Email" />
+    </div>
+    <div class="form-group">
+        <lable for="">Số điện thoại</lable>
+        <asp:TextBox id="txtPhone" runat="server" CssClass="form-control" placeholder="Số điện thoại" />
+    </div>
+    <div class="form-group">
+        <lable for="">Tiêu đề liên hệ </lable>
+        <asp:TextBox id="txtTitle" runat="server" CssClass="form-control" placeholder=">Tiêu đề liên hệ" />
+    </div>
+    <div class="form-group">
+        <lable for="">Nội dung liên hệ</lable>
+        <asp:TextBox id="txtDetail" TextMode="MultiLine" runat="server" CssClass="form-control"/>
+    </div>
+    <div class="form-group">
+        <asp:Button  id="btnGui" OnClick="btnGui_Click"  runat="server" CssClass="btn btn-outline-danger px-5" Text="Gửi người liên hệ"/>
+    </div>
+</div>
